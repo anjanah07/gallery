@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function HomePage() {
   const mockURLS = [
     "https://utfs.io/f/N1tfczHUlMFvXkZW0ZjRU1q5FaIhcAk6ibC8QtyEWKjd3G7s",
