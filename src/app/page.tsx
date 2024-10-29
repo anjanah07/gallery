@@ -1,4 +1,6 @@
-export default function HomePage() {
+import { db } from "~/server/db";
+
+export default async function HomePage() {
   const mockURLS = [
     "https://utfs.io/f/N1tfczHUlMFvXkZW0ZjRU1q5FaIhcAk6ibC8QtyEWKjd3G7s",
     "https://utfs.io/f/N1tfczHUlMFvnNBKphFDsRteGSB8Xvl1nMKkYd4jUOz3AN70",
@@ -8,13 +10,18 @@ export default function HomePage() {
     id: index + 1,
     url,
   }));
-  //https://utfs.io/f/N1tfczHUlMFvXkZW0ZjRU1q5FaIhcAk6ibC8QtyEWKjd3G7s
+
+  const posts = await db.query.posts.findMany();
+  console.log(posts);
   return (
     <main>
       <div className="flex flex-wrap items-center justify-center gap-4">
+        {posts.map((post) => (
+          <div key={post.id}>{post.name}</div>
+        ))}
         {[...mockImages, ...mockImages, ...mockImages].map((image) => (
           <div key={image.id}>
-            <img src={image.url} alt="image" width={400} height={200} />
+            <img src={image.url} alt="gallery pics" width={400} height={200} />
           </div>
         ))}
       </div>
