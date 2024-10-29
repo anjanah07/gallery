@@ -1,26 +1,17 @@
 import { db } from "~/server/db";
 export const dynamic = "force-dynamic";
 export default async function HomePage() {
-  const mockURLS = [
-    "https://utfs.io/f/N1tfczHUlMFvXkZW0ZjRU1q5FaIhcAk6ibC8QtyEWKjd3G7s",
-    "https://utfs.io/f/N1tfczHUlMFvnNBKphFDsRteGSB8Xvl1nMKkYd4jUOz3AN70",
-    "https://utfs.io/f/N1tfczHUlMFv3I08iSb9nhLwoYUj3AkurVKslHiqJ42mpO6d",
-  ];
-  const mockImages = mockURLS.map((url, index) => ({
-    id: index + 1,
-    url,
-  }));
-
-  const posts = await db.query.posts.findMany();
+  const images = await db.query.images.findMany();
   return (
     <main>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {posts.map((post) => (
-          <div key={post.id}>{post.name}</div>
-        ))}
-        {[...mockImages, ...mockImages, ...mockImages].map((image) => (
-          <div key={image.id}>
-            <img src={image.url} alt="gallery pics" width={400} height={200} />
+      <div className="grid w-auto grid-cols-3 gap-2">
+        {[...images, ...images, ...images].map((image) => (
+          <div
+            key={image.id}
+            className="grid place-content-center items-center"
+          >
+            <img src={image.url} alt="gallery pics" />
+            <div>{image.name}</div>
           </div>
         ))}
       </div>
