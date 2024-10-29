@@ -12,7 +12,6 @@ export default async function HomePage() {
   }));
 
   const posts = await db.query.posts.findMany();
-  console.log(posts);
   return (
     <main>
       <div className="flex flex-wrap items-center justify-center gap-4">
