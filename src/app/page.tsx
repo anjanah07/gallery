@@ -8,7 +8,7 @@ export default async function HomePage() {
     });
     return (
       <div className="grid w-auto grid-cols-3 gap-2">
-        {[...images, ...images, ...images].map((image) => (
+        {images.map((image) => (
           <div
             key={image.id}
             className="grid place-content-center items-center"
