@@ -1,24 +1,24 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { db } from "~/server/db";
+import { getMyImages } from "~/server/queries";
 
 // export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const Images = async () => {
-    const images = await db.query.images.findMany({
-      orderBy: (model, { desc }) => desc(model.id),
-    });
+    const images = await getMyImages();
+
     return (
       <div className="grid w-auto grid-cols-3 gap-2">
-        {images.map((image) => (
-          <div
-            key={image.id}
-            className="grid place-content-center items-center"
-          >
-            <img src={image.url} alt="gallery pics" />
-            <div>{image.name}</div>
-          </div>
-        ))}
+        {Array.isArray(images) &&
+          images.map((image) => (
+            <div
+              key={image.id}
+              className="grid place-content-center items-center"
+            >
+              <img src={image.url} alt="gallery pics" />
+              <div>{image.name}</div>
+            </div>
+          ))}
       </div>
     );
   };
