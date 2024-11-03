@@ -1,4 +1,5 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Image from "next/image";
 import { getMyImages } from "~/server/queries";
 
 // export const dynamic = "force-dynamic";
@@ -15,7 +16,13 @@ export default async function HomePage() {
               key={image.id}
               className="grid place-content-center items-center"
             >
-              <img src={image.url} alt="gallery pics" />
+              <Image
+                src={image.url}
+                alt={image.name}
+                style={{ objectFit: "contain" }}
+                width={400}
+                height={400}
+              />
               <div>{image.name}</div>
             </div>
           ))}
