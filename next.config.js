@@ -6,7 +6,7 @@ await import("./src/env.js");
 import { withSentryConfig } from "@sentry/nextjs";
 
 /** @type {import("next").NextConfig} */
-const config = {
+const coreConfig = {
 	images: {
 		remotePatterns: [
 			{
@@ -22,7 +22,7 @@ const config = {
 	},
 };
 
-export default withSentryConfig(config, {
+export default withSentryConfig(coreConfig, {
 	// For all available options, see:
 	// https://github.com/getsentry/sentry-webpack-plugin#options
 
