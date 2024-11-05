@@ -26,7 +26,7 @@ export default withSentryConfig(config, {
 	// For all available options, see:
 	// https://github.com/getsentry/sentry-webpack-plugin#options
 
-	org: "gallery-app",
+	org: "jp-morgan-chase-is",
 	project: "gallery",
 
 	// Only print logs for uploading source maps in CI
