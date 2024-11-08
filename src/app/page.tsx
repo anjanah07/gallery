@@ -10,9 +10,9 @@ export default async function HomePage() {
     const images = await getMyImages();
 
     return (
-      <div className="grid w-auto grid-cols-3 gap-2">
+      <div className="grid w-auto grid-cols-3 gap-2 p-4">
         {Array.isArray(images) &&
-          images.map((image) => (
+          [...images, ...images, ...images].map((image) => (
             <div
               key={image.id}
               className="grid place-content-center items-center"
