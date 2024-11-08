@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { getImage } from "~/server/queries";
+import Modal from "./modal";
+import { Dialog } from "~/components/ui/dialog";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 const PhotoModal = async ({
   params: { id: photoId },
@@ -12,15 +15,14 @@ const PhotoModal = async ({
   const image = await getImage(photoIdasNum);
   if (!image || image instanceof Error) return <div>Error loading image</div>;
   return (
-    <div>
-      <Image
+    <Modal>
+      <img
         src={image.url}
         alt={image.name}
-        height={800}
-        width={800}
-        className="w-full"
+        className="w-96"
+        // className="w-full"
       />
-    </div>
+    </Modal>
   );
 };
 
