@@ -5,12 +5,19 @@ const FullPageImageViewPhoto = async (props: { id: number }) => {
   const image = await getImage(props.id);
   if (!image || image instanceof Error) return <div>Error loading image</div>;
   return (
-    <img
-      src={image.url}
-      alt={image.name}
-      className="w-96"
-      // className="w-full"
-    />
+    <div className="flex h-full w-full bg-green-500">
+      <div className="flex items-center justify-center">
+        <img
+          src={image.url}
+          alt={image.name}
+          className="object-contain"
+          // className="w-full"
+        />
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="text-xl font-bold">{image.name}</div>
+      </div>
+    </div>
   );
 };
 
