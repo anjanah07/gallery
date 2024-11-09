@@ -8,18 +8,23 @@ const FullPageImageViewPhoto = async (props: { id: number }) => {
   const user = await clerkClient.call(this);
   const userInfo = await user.users.getUser(String(image.userId));
   return (
-    <div className="flex h-full w-full min-w-0">
-      <div className="flex w-1/2 flex-shrink">
+    <div className="flex h-full w-full">
+      <div className="flex flex-grow items-center justify-center">
         <img
           src={image.url}
           alt={image.name}
-          className="flex-shirnk object-contain"
+          className="flex-shrink object-contain"
         />
       </div>
-      <div className="flex w-1/2 flex-shrink-0 flex-col gap-2 border-l">
-        <div className="p-2 text-center text-lg">{image.name}</div>
-        <div className="flex flex-col">
-          <span>Uploaded By :{userInfo.fullName}</span>
+      <div className="flex w-64 flex-shrink-0 flex-col gap-2 border-l p-4">
+        <div className="border-b pb-2 text-lg">{image.name}</div>
+        <div className="flex flex-col p-2">
+          <span>Uploaded By :</span>
+          <span>{userInfo.fullName}</span>
+        </div>
+        <div className="flex flex-col p-2">
+          <span>Created on :</span>
+          <span>{new Date(image.createdAt).toLocaleDateString()}</span>
         </div>
       </div>
     </div>
