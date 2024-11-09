@@ -16,7 +16,7 @@ const FullPageImageViewPhoto = async (props: { id: number }) => {
           className="flex-shirnk object-contain"
         />
       </div>
-      <div className="itmems-center flex w-1/2 flex-shrink-0 justify-center gap-2 border-l">
+      <div className="flex w-1/2 flex-shrink-0 flex-col gap-2 border-l">
         <div className="p-2 text-center text-lg">{image.name}</div>
         <div className="flex flex-col">
           <span>Uploaded By :{userInfo.fullName}</span>
