@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
+import { toast } from "sonner";
 
 type Input = Parameters<typeof useUploadThing>;
 const useUploadThingInputProps = (...args: Input) => {
@@ -44,7 +45,16 @@ const UploadSVG = () => {
 };
 const SimpleUpladButton = () => {
   const { inputProps } = useUploadThingInputProps("imageUploader", {
-    onClientUploadComplete: () => route.refresh(),
+    onUploadBegin: () =>
+      toast("Uploading...", {
+        duration: 100000,
+        id: "upload-begin",
+      }),
+    onClientUploadComplete: () => {
+      route.refresh();
+      toast.dismiss("upload-begin");
+      toast("Upload Complete");
+    },
   });
   const route = useRouter();
 
