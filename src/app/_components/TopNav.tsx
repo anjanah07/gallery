@@ -2,6 +2,7 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/utils/uploadthing";
+import SimpleUpladButton from "./simple-upload-button";
 
 export const TopNav = () => {
   const router = useRouter();
@@ -13,12 +14,7 @@ export const TopNav = () => {
           <SignInButton />
         </SignedOut>
         <SignedIn>
-          <UploadButton
-            endpoint={"imageUploader"}
-            onClientUploadComplete={() => {
-              router.refresh();
-            }}
-          />
+          <SimpleUpladButton />
           <UserButton />
         </SignedIn>
       </div>
