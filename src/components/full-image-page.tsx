@@ -1,12 +1,16 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import React from "react";
-import { getImage } from "~/server/queries";
+import { deleteImage, getImage } from "~/server/queries";
+import { Button } from "./ui/button";
+import { redirect } from "next/navigation";
 
 const FullPageImageViewPhoto = async (props: { id: number }) => {
+  console.log("Anj is in full image page");
   const image = await getImage(props.id);
-  if (!image || image instanceof Error) return <div>Error loading image</div>;
-  const user = await clerkClient.call(this);
+  if (!image || image instanceof Error) return <div>Image not found</div>;
+  const user = await clerkClient();
   const userInfo = await user.users.getUser(String(image.userId));
+
   return (
     <div className="flex h-full w-full">
       <div className="flex flex-grow items-center justify-center">
@@ -26,6 +30,19 @@ const FullPageImageViewPhoto = async (props: { id: number }) => {
           <span>Created on :</span>
           <span>{new Date(image.createdAt).toLocaleDateString()}</span>
         </div>
+        <form
+          action={async () => {
+            "use server";
+            await deleteImage(image.id);
+            redirect("/");
+          }}
+        >
+          <div className="p-2">
+            <Button variant="destructive" type="submit">
+              Delete
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );

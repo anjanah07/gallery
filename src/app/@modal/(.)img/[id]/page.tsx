@@ -9,6 +9,7 @@ const PhotoModal = ({
 }) => {
   const photoIdasNum = Number(photoId);
   if (Number.isNaN(photoIdasNum)) return <div>Invalid ID</div>;
+  console.log("Anj is in parallel route page.tsx");
   return (
     <Modal>
       <FullPageImageViewPhoto id={photoIdasNum} />

@@ -9,6 +9,7 @@ const Modal = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (!dialogRef.current?.open) dialogRef.current?.showModal();
+    console.log("Anj is in Modal component");
   }, []);
   const onDismiss = () => {
     router.back();
@@ -18,7 +19,6 @@ const Modal = ({ children }: { children: ReactNode }) => {
       ref={dialogRef}
       className="m-0 h-screen w-screen bg-black/80 text-white"
       onClose={onDismiss}
-      onDoubleClick={onDismiss}
     >
       {children}
     </dialog>,
